@@ -1,6 +1,8 @@
 package com.wakakusa.soba_ver1;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +18,7 @@ import java.util.logging.LogRecord;
 
 public class TimerActivity extends AppCompatActivity {
 
-    private TextView timerText;
+    private TextView timerText, processText;
     private Button startButton, stopButton;
     private Timer timer;
     private final long delay = 0;       //タスクが実行されるまでの時間(mm)
@@ -24,6 +26,9 @@ public class TimerActivity extends AppCompatActivity {
     private long count;
     private Handler handler = new Handler();
     private CountUpTimerTask timerTask = null;
+    private long[] recode = new long[12];
+    private int t;
+    final SobaProcess process_text = new SobaProcess(); //そば工程名を保持させている
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,13 @@ public class TimerActivity extends AppCompatActivity {
 
     //timerの表示
     void desplay(){
+
+        processText = (TextView) findViewById(R.id.name);
+        processText.setText(process_text.process[t]);
+
+        //計測した時間を入れる配列の番号
+        t = 0;
+
         timerText = (TextView) findViewById(R.id.timer);
         timerText.setText("00:00.0");
 
@@ -43,10 +55,16 @@ public class TimerActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // タイマーが走っている最中にボタンをタップされたケース
                 if(null != timer){
-                    timer.cancel();
-                    timer = null;
+                    recode[t] = count;
+                    t++;
+                    if(t == 12){
+                        Intent intent = new Intent(getApplication(), MeasureActivity.class);
+                        startActivity(intent);
+                    }
+                    if(t < 12)processText.setText(process_text.process[t]);
                 }
 
                 // Timer インスタンスを生成
@@ -60,21 +78,44 @@ public class TimerActivity extends AppCompatActivity {
                 timer.schedule(timerTask, 0, 100);
 
                 // カウンター
-                count = 0;
-                timerText.setText("00:00.0");
+               // count = 0;
+               // timerText.setText("00:00.0");
 
             }
         });
 
+        final AlertDialog.Builder pose_builder= new AlertDialog.Builder(this);
+        //中断ボタンの処理
         stopButton = (Button) findViewById(R.id.stop);
         stopButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
                 if(null != timer){
                     // Cancel
                     timer.cancel();
                     timer = null;
-                    timerText.setText("00:00.0");
+
+                    pose_builder.setMessage("計測を中断しますか？")
+                                .setTitle("中断")
+                                .setPositiveButton("はい",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Intent intent = new Intent(getApplication(), MeasureActivity.class);
+                                            startActivity(intent);
+
+                                        }})
+                                .setNegativeButton("いいえ", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        timer = new Timer();
+                                        // TimerTask インスタンスを生成
+                                        timerTask = new CountUpTimerTask();
+                                        timer.schedule(timerTask, 0, 100);
+
+                                    }}).show();
+
                 }
             }
         });

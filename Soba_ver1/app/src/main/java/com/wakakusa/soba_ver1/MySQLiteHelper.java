@@ -26,17 +26,20 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     //テーブル作成のSQL文
     final String  userData = "CREATE TABLE student(" +
             "name TEXT," +
-            "data     TEXT,"+
-            "       TEXT,"+
-            "ug        TEXT,"+
-            "dpm       TEXT,"+
-            "grade     TEXT,"+
-            "mjr       TEXT,"+
-            "sub1      TEXT,"+
-            "sub2      TEXT,"+
-            "teacher   TEXT,"+
-            "address   TEXT,"+
-            "mailaddress TEXT )";
+            "data      INT,"+
+            "keiryo    INT,"+
+            "mizu      INT,"+
+            "kone      INT,"+
+            "zinosi    INT,"+
+            "marudasi  INT,"+
+            "yotudasi  INT,"+
+            "nikuzuke  INT,"+
+            "nosi      INT,"+
+            "tatami    INT,"+
+            "kiriyoi   INT,"+
+            "kiri      INT,"+
+            "katazuke  INT,"+
+            "result    INT )";
 
 
 
