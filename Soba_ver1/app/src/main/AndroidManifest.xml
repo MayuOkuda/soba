@@ -17,7 +17,9 @@
         </activity>
         <activity android:name=".TimerActivity" />
         <activity android:name=".MenuActivity" />
-        <activity android:name=".ReadDataActivity"></activity>
+        <activity android:name=".ReadDataActivity" />
+        <activity android:name=".result_comment" />
+        <activity android:name=".time_result"></activity>
     </application>
 
 </manifest>
