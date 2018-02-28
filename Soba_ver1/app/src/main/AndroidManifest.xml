@@ -19,7 +19,8 @@
         <activity android:name=".MenuActivity" />
         <activity android:name=".ReadDataActivity" />
         <activity android:name=".result_comment" />
-        <activity android:name=".time_result"></activity>
+        <activity android:name=".time_result" />
+        <activity android:name=".RecordScreenActivity"></activity>
     </application>
 
 </manifest>
