@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MeasureActivity"
+    android:id="@+id/menu_background">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="お気楽モード"
+        android:id="@+id/enjoy"
+        android:layout_marginTop="27dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="検定"
+        android:id="@+id/challenge"
+        android:layout_alignTop="@+id/enjoy"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="58dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="名人"
+        android:id="@+id/expert"
+        android:layout_below="@+id/enjoy"
+        android:layout_alignEnd="@+id/enjoy"
+        android:layout_marginTop="76dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="カスタム"
+        android:id="@+id/custom"
+        android:layout_alignBottom="@+id/expert"
+        android:layout_alignStart="@+id/challenge" />
+</RelativeLayout>
