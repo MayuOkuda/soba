@@ -9,12 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.os.Handler;
-import org.w3c.dom.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-import java.util.logging.LogRecord;
 
 public class TimerActivity extends AppCompatActivity {
 
@@ -28,7 +25,7 @@ public class TimerActivity extends AppCompatActivity {
     private CountUpTimerTask timerTask = null;
     private long[] recode = new long[12];
     private int t;
-    final SobaProcess process_text = new SobaProcess(); //そば工程名を保持させている
+    final SobaText process_text = new SobaText(); //そば工程名を保持させている
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +40,8 @@ public class TimerActivity extends AppCompatActivity {
     void desplay(){
 
         processText = (TextView) findViewById(R.id.name);
-        processText.setText(process_text.process[t]);
+        processText.setText(process_text.timer_comment);
+
 
         //計測した時間を入れる配列の番号
         t = 0;
@@ -52,45 +50,52 @@ public class TimerActivity extends AppCompatActivity {
         timerText.setText("00:00.0");
 
         startButton = (Button) findViewById(R.id.start);
+        startButton.setText(process_text.start_text);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 // タイマーが走っている最中にボタンをタップされたケース
-                if(null != timer){
+                if(null != timer) {
+                    //工程名を表示
                     recode[t] = count;
                     t++;
-                    if(t == 12){
-                        Intent intent = new Intent(getApplication(), MeasureActivity.class);
+                    if (t < 12) processText.setText(process_text.process[t]);
+                    if (t == 12) {
+                        Intent intent = new Intent(getApplication(), result_comment.class);
+                        intent.putExtra("recode_time",recode);
+                        intent.putExtra("aa","わからん");
                         startActivity(intent);
+
                     }
-                    if(t < 12)processText.setText(process_text.process[t]);
+
+                }else {
+                    processText.setText(process_text.process[t]);
+                    // Timer インスタンスを生成
+                    timer = new Timer();
+
+                    // TimerTask インスタンスを生成
+                    timerTask = new CountUpTimerTask();
+
+                    // スケジュールを設定 100msec
+                    // public void schedule (TimerTask task, long delay, long period)
+                    timer.schedule(timerTask, 0, 100);
+                    // ボタンの文字変更
+                    startButton.setText(process_text.comp_text);
+                    stopButton.setText(process_text.pose_text);
                 }
-
-                // Timer インスタンスを生成
-                timer = new Timer();
-
-                // TimerTask インスタンスを生成
-                timerTask = new CountUpTimerTask();
-
-                // スケジュールを設定 100msec
-                // public void schedule (TimerTask task, long delay, long period)
-                timer.schedule(timerTask, 0, 100);
-
-                // カウンター
-               // count = 0;
-               // timerText.setText("00:00.0");
-
             }
         });
 
         final AlertDialog.Builder pose_builder= new AlertDialog.Builder(this);
         //中断ボタンの処理
         stopButton = (Button) findViewById(R.id.stop);
+        stopButton.setText(process_text.back_text);
         stopButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
+                // タイマーが走っている最中にボタンをタップされたケース
                 if(null != timer){
                     // Cancel
                     timer.cancel();
@@ -102,9 +107,7 @@ public class TimerActivity extends AppCompatActivity {
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            Intent intent = new Intent(getApplication(), MeasureActivity.class);
-                                            startActivity(intent);
-
+                                            finish();
                                         }})
                                 .setNegativeButton("いいえ", new DialogInterface.OnClickListener() {
                                     @Override
@@ -115,6 +118,9 @@ public class TimerActivity extends AppCompatActivity {
                                         timer.schedule(timerTask, 0, 100);
 
                                     }}).show();
+
+                } else {
+                    finish();
 
                 }
             }
