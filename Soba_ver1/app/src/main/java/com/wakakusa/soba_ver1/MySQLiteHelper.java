@@ -24,7 +24,25 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     static String DB_name = "soba.db";
 
     //テーブル作成のSQL文
-    final String  userData = "CREATE TABLE student(" +
+    final String  userData = "CREATE TABLE userData(" +
+            "name TEXT not null, " +
+            "id   INTEGER,"   +
+            "data      INTEGER,"+
+            "keiryo    INTEGER,"+
+            "mizu      INTEGER,"+
+            "kone      INTEGER,"+
+            "zinosi    INTEGER,"+
+            "marudasi  INTEGER,"+
+            "yotudasi  INTEGER,"+
+            "nikuzuke  INTEGER,"+
+            "nosi      INTEGER,"+
+            "tatami    INTEGER,"+
+            "kiriyoi   INTEGER,"+
+            "kiri      INTEGER,"+
+            "katazuke  INTEGER,"+
+            "result    INTEGER )";
+
+    final String  timeData = "CREATE TABLE time(" +
             "name TEXT," +
             "data      INT,"+
             "keiryo    INT,"+
@@ -70,30 +88,23 @@ class DatabaseWriter {
     String Table_name;
 
     final String[] tableName = {"student", "course","score", "test", "news","loginData"};
-    final String[] student_property = {"id","name", "birth","adm","ug","dpm","grade","mjr","sub1","sub2","teacher","address","mailaddress"};
-    final String[] course_property = {"scode", "subject", "daytime","teacher","period","room","sj","sjclass","sjclasssub"};
-    final String[] score_property = {"scode","score","year","period"};
-    final String[] test_property = {"scode","test1","test2"};
-    final String[] news_property = {"newscode","day","adduser","address","title","content","neclass"};
-    final String[] time_property = {"realtime","limittime","ara","tokenID","response"};
+    final String[] user_property = {"id","name", "birth","adm","ug","dpm","grade","mjr","sub1","sub2","teacher","address","mailaddress"};
 
     //コンストラクタ
     public DatabaseWriter(Context context, String table) {
         Table_name = table;
         helper = new MySQLiteHelper(context);
         write = helper.getWritableDatabase();
-        if(Table_name.equals(tableName[0])) property = student_property;
-        else if(Table_name.equals(tableName[1])) property = course_property;
-        else if(Table_name.equals(tableName[2])) property = score_property;
-        else if(Table_name.equals(tableName[3])) property = test_property;
-        else if(Table_name.equals(tableName[4])) property = news_property;
-        else if(Table_name.equals(tableName[5])) property = time_property;
+        if(Table_name.equals(tableName[0])) property = property;
+
     }
 
     //データベースに入れる値を順番に入れる
-    public void writeDB(JSONObject obj) throws JSONException {
+    public void writeDB(int [] recode_time) throws JSONException {
         ContentValues cvalue = new ContentValues();
-        for(String i : property)  cvalue.put(i, obj.getString(i));
+        for(int i = 0; i < recode_time.length; i++){
+            cvalue.put(property[i], recode_time[i]);
+        }
         write.insert(this.Table_name, null, cvalue);
 
     }

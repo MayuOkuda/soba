@@ -9,12 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.os.Handler;
-import org.w3c.dom.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-import java.util.logging.LogRecord;
 
 public class TimerActivity extends AppCompatActivity {
 
@@ -28,7 +25,7 @@ public class TimerActivity extends AppCompatActivity {
     private CountUpTimerTask timerTask = null;
     private long[] recode = new long[12];
     private int t;
-    //final SobaProcess process_text = new SobaProcess(); //そば工程名を保持させている
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +40,8 @@ public class TimerActivity extends AppCompatActivity {
     void desplay(){
 
         processText = (TextView) findViewById(R.id.name);
+
+       //起動時のコメントの文字列セット
         processText.setText(SobaProcess.timer_coment);
 
         //計測した時間を入れる配列の番号
@@ -51,63 +50,64 @@ public class TimerActivity extends AppCompatActivity {
         timerText = (TextView) findViewById(R.id.timer);
         timerText.setText("00:00.0");
 
+        //左側のボタンの処理
         startButton = (Button) findViewById(R.id.start);
+        startButton.setText(SobaProcess.start_left);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 // タイマーが走っている最中にボタンをタップされたケース
-                if(null != timer){
+                if(null != timer) {
+                    //工程名を表示
                     recode[t] = count;
                     t++;
-                    if(t == 12){
-                        Intent intent = new Intent(getApplication(), MeasureActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    if (t < 12) processText.setText(SobaProcess.process[t]);
+                    if (t == 12) {
+                        Intent intent = new Intent(getApplication(), result_comment.class);
+                        intent.putExtra("recode_time",recode);
                         startActivity(intent);
+
                     }
-                    if(t < 12)processText.setText(SobaProcess.process[t]);
+
+                }else {
+                    processText.setText(SobaProcess.process[t]);
+                    // Timer インスタンスを生成
+                    timer = new Timer();
+
+                    // TimerTask インスタンスを生成
+                    timerTask = new CountUpTimerTask();
+
+                    // スケジュールを設定 100msec
+                    // public void schedule (TimerTask task, long delay, long period)
+                    timer.schedule(timerTask, 0, 100);
+                    // ボタンの文字変更
+                    startButton.setText(SobaProcess.run_left);
+                    stopButton.setText(SobaProcess.run_ringht);
                 }
-
-                //作業工程
-                processText.setText(SobaProcess.process[t]);
-                // Timer インスタンスを生成
-                timer = new Timer();
-
-                // TimerTask インスタンスを生成
-                timerTask = new CountUpTimerTask();
-
-                // スケジュールを設定 100msec
-                // public void schedule (TimerTask task, long delay, long period)
-                timer.schedule(timerTask, 0, 100);
-
-                // カウンター
-               // count = 0;
-               // timerText.setText("00:00.0");
-
             }
         });
 
-        final AlertDialog.Builder pose_builder= new AlertDialog.Builder(this);
-        //中断ボタンの処理
+        //右側のボタンの処理
         stopButton = (Button) findViewById(R.id.stop);
+        stopButton.setText(SobaProcess.run_ringht);
         stopButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
+                // タイマーが走っている最中にボタンをタップされたケース
                 if(null != timer){
                     // Cancel
                     timer.cancel();
                     timer = null;
-
+                    AlertDialog.Builder pose_builder= new AlertDialog.Builder(getApplicationContext());
                     pose_builder.setMessage("計測を中断しますか？")
                                 .setTitle("中断")
                                 .setPositiveButton("はい",
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            Intent intent = new Intent(getApplication(), MeasureActivity.class);
-                                            startActivity(intent);
-
+                                            finish();
                                         }})
                                 .setNegativeButton("いいえ", new DialogInterface.OnClickListener() {
                                     @Override
@@ -118,6 +118,9 @@ public class TimerActivity extends AppCompatActivity {
                                         timer.schedule(timerTask, 0, 100);
 
                                     }}).show();
+
+                } else {
+                    finish();
 
                 }
             }
@@ -134,9 +137,6 @@ public class TimerActivity extends AppCompatActivity {
             handler.post(new Runnable() {
                 public void run() {
                     count++;
-                    long mm = count*100 / 1000 / 60;
-                    long ss = count*100 / 1000 % 60;
-                    long ms = (count*100 - ss * 1000 - mm * 1000 * 60)/100;
                     // 桁数を合わせるために02d(2桁)を設定
                     timerText.setText(SobaProcess.setTime(count));
                 }

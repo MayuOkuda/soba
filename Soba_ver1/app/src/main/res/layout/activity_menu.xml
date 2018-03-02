@@ -13,7 +13,9 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -29,7 +31,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2">
+                    android:layout_weight="1">
 
                 </LinearLayout>
 
@@ -42,10 +44,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="挑戦モード選択"
-                        android:background="@drawable/text_form"
+                        android:background="@drawable/text_form1"
                         android:id="@+id/button"
                         android:textColor="#ffffff"
-                        android:textSize="32dp" />
+                        android:textSize="32sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -88,17 +90,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="測定データ"
-                        android:background="@drawable/text_form"
+                        android:background="@drawable/text_form1"
                         android:id="@+id/button2"
-                        android:textSize="34dp"
-                        android:textColor="#ffffff" />
+                        android:textColor="#ffffff"
+                        android:textSize="32sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2">
+                    android:layout_weight="1">
 
                 </LinearLayout>
             </LinearLayout>
@@ -126,27 +128,34 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
+                </LinearLayout>
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="4">
+
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="使い方"
-                        android:background="@drawable/text_form"
+                        android:background="@drawable/text_form1"
                         android:id="@+id/button3"
-                        android:textSize="34dp"
-                        android:textColor="#ffffff" />
+                        android:textColor="#ffffff"
+                        android:textSize="32sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="3">
+                    android:layout_weight="2">
 
                 </LinearLayout>
             </LinearLayout>

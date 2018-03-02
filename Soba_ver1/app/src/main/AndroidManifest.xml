@@ -8,18 +8,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MeasureActivity">
+        <activity android:name=".MenuActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MeasureActivity"/>
         <activity android:name=".TimerActivity" />
-        <activity android:name=".MenuActivity" />
         <activity android:name=".ReadDataActivity" />
         <activity android:name=".result_comment" />
-        <activity android:name=".time_result"></activity>
+        <activity android:name=".time_result" />
+        <activity android:name=".RecordScreenActivity" />
+        <activity android:name=".RecordActivity"></activity>
     </application>
 
 </manifest>
