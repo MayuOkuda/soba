@@ -28,7 +28,7 @@ public class TimerActivity extends AppCompatActivity {
     private CountUpTimerTask timerTask = null;
     private long[] recode = new long[12];
     private int t;
-    final SobaProcess process_text = new SobaProcess(); //そば工程名を保持させている
+    //final SobaProcess process_text = new SobaProcess(); //そば工程名を保持させている
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class TimerActivity extends AppCompatActivity {
     void desplay(){
 
         processText = (TextView) findViewById(R.id.name);
-        processText.setText(process_text.process[t]);
+        processText.setText(SobaProcess.timer_coment);
 
         //計測した時間を入れる配列の番号
         t = 0;
@@ -62,11 +62,14 @@ public class TimerActivity extends AppCompatActivity {
                     t++;
                     if(t == 12){
                         Intent intent = new Intent(getApplication(), MeasureActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                     }
-                    if(t < 12)processText.setText(process_text.process[t]);
+                    if(t < 12)processText.setText(SobaProcess.process[t]);
                 }
 
+                //作業工程
+                processText.setText(SobaProcess.process[t]);
                 // Timer インスタンスを生成
                 timer = new Timer();
 
@@ -135,7 +138,7 @@ public class TimerActivity extends AppCompatActivity {
                     long ss = count*100 / 1000 % 60;
                     long ms = (count*100 - ss * 1000 - mm * 1000 * 60)/100;
                     // 桁数を合わせるために02d(2桁)を設定
-                    timerText.setText(String.format("%1$02d:%2$02d.%3$01d", mm, ss, ms));
+                    timerText.setText(SobaProcess.setTime(count));
                 }
             });
         }
