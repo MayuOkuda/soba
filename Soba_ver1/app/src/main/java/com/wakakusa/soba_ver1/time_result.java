@@ -18,7 +18,8 @@ public class time_result extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), MenuActivity.class);
+                Intent intent = new Intent(getApplication(), RecordScreenActivity.class);
+                intent.putExtra("recode_time",getIntent().getLongArrayExtra("recode_time"));
                 startActivity(intent);
             }
         });
@@ -28,7 +29,7 @@ public class time_result extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), ReadDataActivity.class);
+                Intent intent = new Intent(getApplication(), MeasureActivity.class);
                 startActivity(intent);
             }
         });

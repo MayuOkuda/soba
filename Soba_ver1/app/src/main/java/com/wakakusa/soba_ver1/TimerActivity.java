@@ -90,7 +90,8 @@ public class TimerActivity extends AppCompatActivity {
 
         //右側のボタンの処理
         stopButton = (Button) findViewById(R.id.stop);
-        stopButton.setText(SobaProcess.run_ringht);
+        stopButton.setText(SobaProcess.start_right);
+        final AlertDialog.Builder pose_builder= new AlertDialog.Builder(this);
         stopButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -100,7 +101,6 @@ public class TimerActivity extends AppCompatActivity {
                     // Cancel
                     timer.cancel();
                     timer = null;
-                    AlertDialog.Builder pose_builder= new AlertDialog.Builder(getApplicationContext());
                     pose_builder.setMessage("計測を中断しますか？")
                             .setTitle("中断")
                             .setPositiveButton("はい",
@@ -117,7 +117,7 @@ public class TimerActivity extends AppCompatActivity {
                                     timerTask = new CountUpTimerTask();
                                     timer.schedule(timerTask, 0, 100);
 
-                                }}).show();
+                                }}).show().setCanceledOnTouchOutside(false);
 
                 } else {
                     finish();

@@ -24,22 +24,27 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     static String DB_name = "soba.db";
 
     //テーブル作成のSQL文
-    final String  userData = "CREATE TABLE student(" +
-            "name TEXT," +
-            "data      INT,"+
-            "keiryo    INT,"+
-            "mizu      INT,"+
-            "kone      INT,"+
-            "zinosi    INT,"+
-            "marudasi  INT,"+
-            "yotudasi  INT,"+
-            "nikuzuke  INT,"+
-            "nosi      INT,"+
-            "tatami    INT,"+
-            "kiriyoi   INT,"+
-            "kiri      INT,"+
-            "katazuke  INT,"+
-            "result    INT )";
+    //登録ユーザ情報
+    final String userData = "CREATE TABLE user(" +
+            "name      TEXT," +
+            "id        INTEGER)";
+
+    //登録データ情報
+    final String  timeData = "CREATE TABLE recode(" +
+            "id        INTEGER,"+
+            "keiryo    INTEGER,"+
+            "mizu      INTEGER,"+
+            "kone      INTEGER,"+
+            "zinosi    INTEGER,"+
+            "marudasi  INTEGER,"+
+            "yotudasi  INTEGER,"+
+            "nikuzuke  INTEGER,"+
+            "nosi      INTEGER,"+
+            "tatami    INTEGER,"+
+            "kiriyoi   INTEGER,"+
+            "kiri      INTEGER,"+
+            "katazuke  INTEGER,"+
+            "sum       INTEGER )";
 
 
 
@@ -53,7 +58,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     //データベースの作成（自動で起動）
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(userData);
-
+        db.execSQL(timeData);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -69,33 +74,38 @@ class DatabaseWriter {
     String[] property;
     String Table_name;
 
-    final String[] tableName = {"student", "course","score", "test", "news","loginData"};
-    final String[] student_property = {"id","name", "birth","adm","ug","dpm","grade","mjr","sub1","sub2","teacher","address","mailaddress"};
-    final String[] course_property = {"scode", "subject", "daytime","teacher","period","room","sj","sjclass","sjclasssub"};
-    final String[] score_property = {"scode","score","year","period"};
-    final String[] test_property = {"scode","test1","test2"};
-    final String[] news_property = {"newscode","day","adduser","address","title","content","neclass"};
-    final String[] time_property = {"realtime","limittime","ara","tokenID","response"};
+    final String[] tableName = {"user", "recode","time"};
+    final String[] user_property = {"name", "id"};
+    final String[] recode_property = {"id", "keiryo", "mizu", "kone", "zinosi", "marudasi","yotudasi"
+                                        ,"nikuzuke", "nosi", "tatami", "kiriyoi", "kiri", "katazuke", "sum"};
+    final String[] time_property = {"id", "keiryo", "mizu", "kone", "zinosi", "marudasi","yotudasi"
+                                        ,"nikuzuke", "nosi", "tatami", "kiriyoi", "kiri", "katazuke", "sum"};
 
     //コンストラクタ
     public DatabaseWriter(Context context, String table) {
         Table_name = table;
         helper = new MySQLiteHelper(context);
         write = helper.getWritableDatabase();
-        if(Table_name.equals(tableName[0])) property = student_property;
-        else if(Table_name.equals(tableName[1])) property = course_property;
-        else if(Table_name.equals(tableName[2])) property = score_property;
-        else if(Table_name.equals(tableName[3])) property = test_property;
-        else if(Table_name.equals(tableName[4])) property = news_property;
-        else if(Table_name.equals(tableName[5])) property = time_property;
+        if(Table_name.equals(tableName[0])) property = user_property;
+        else if(Table_name.equals(tableName[1])) property = recode_property;
+        else if(Table_name.equals(tableName[2])) property = time_property;
+
     }
 
     //データベースに入れる値を順番に入れる
-    public void writeDB(JSONObject obj) throws JSONException {
+    public void user_dataWrite(String name, long id) throws JSONException {
         ContentValues cvalue = new ContentValues();
-        for(String i : property)  cvalue.put(i, obj.getString(i));
+        cvalue.put("name", name);
+        cvalue.put("id", id);
         write.insert(this.Table_name, null, cvalue);
+    }
 
+    //データベースに入れる値を順番に入れる
+    public void userwrite(long[] recode, long id) throws JSONException {
+        ContentValues cvalue = new ContentValues();
+        cvalue.put("id", id);
+        for(int i = 0; i < property.length; i++ )  cvalue.put(property[i], recode[i]);
+        write.insert(this.Table_name, null, cvalue);
     }
 
     public void deleteDB() {
