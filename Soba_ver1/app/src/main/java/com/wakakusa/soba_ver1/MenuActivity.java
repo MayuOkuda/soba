@@ -15,7 +15,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
          /*測定モードボタン*/
-        Button button1 = (Button) findViewById(R.id.enjoy);
+        Button button1 = (Button) findViewById(R.id.button);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,8 +25,8 @@ public class MenuActivity extends AppCompatActivity {
         });
 
          /*データ閲覧*/
-        Button button2 = (Button) findViewById(R.id.enjoy);
-        button1.setOnClickListener(new View.OnClickListener() {
+        Button button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), ReadDataActivity.class);
