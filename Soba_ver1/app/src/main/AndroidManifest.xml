@@ -20,7 +20,8 @@
         <activity android:name=".ReadDataActivity" />
         <activity android:name=".result_comment" />
         <activity android:name=".time_result" />
-        <activity android:name=".RecordScreenActivity"></activity>
+        <activity android:name=".RecordScreenActivity" />
+        <activity android:name=".RecordActivity"></activity>
     </application>
 
 </manifest>
