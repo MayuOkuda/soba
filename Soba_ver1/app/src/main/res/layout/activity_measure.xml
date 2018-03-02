@@ -46,7 +46,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="お気楽モード"
-                        android:id="@+id/enjoy" />
+                        android:background="@drawable/button_mode_form1"
+                        android:id="@+id/enjoy"
+                        android:textColor="#ffffff"
+                        android:textSize="32sp"/>
                 </LinearLayout>
 
 
@@ -77,11 +80,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="6">
+
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="検定"
-                        android:id="@+id/challenge"/>
+                        android:background="@drawable/button_mode_form2"
+                        android:id="@+id/challenge"
+                        android:textColor="#ffffff"
+                        android:textSize="32sp"/>
                 </LinearLayout>
 
 
@@ -117,7 +124,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="名人"
-                        android:id="@+id/expert" />
+                        android:background="@drawable/button_mode_form3"
+                        android:id="@+id/expert"
+                        android:textColor="#ffffff"
+                        android:textSize="32sp"/>
                 </LinearLayout>
 
 
@@ -153,7 +163,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="カスタム"
-                        android:id="@+id/custom"/>
+                        android:background="@drawable/button_mode_form4"
+                        android:id="@+id/custom"
+                        android:textColor="#ffffff"
+                        android:textSize="32sp"/>
                 </LinearLayout>
 
 
@@ -203,10 +216,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="戻る"
-                            android:background="@drawable/text_form"
+                            android:background="@drawable/text_form1"
                             android:id="@+id/modoru"
-                            android:textSize="34dp"
-                            android:textColor="#ffffff" />
+                            android:textColor="#ffffff"
+                            android:textSize="32sp" />
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"

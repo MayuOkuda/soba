@@ -45,10 +45,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="新規登録"
-                        android:background="@drawable/text_form"
+                        android:background="@drawable/text_form1"
                         android:id="@+id/new_record"
                         android:textColor="#ffffff"
-                        android:textSize="32dp" />
+                        android:textSize="32sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -91,10 +91,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="追加登録"
-                        android:background="@drawable/text_form"
+                        android:background="@drawable/text_form1"
                         android:id="@+id/add_record"
-                        android:textSize="34dp"
-                        android:textColor="#ffffff" />
+                        android:textColor="#ffffff"
+                        android:textSize="32sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -147,10 +147,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="最初に戻る"
-                        android:background="@drawable/text_form"
+                        android:background="@drawable/text_form1"
                         android:id="@+id/to_home"
-                        android:textSize="34dp"
-                        android:textColor="#ffffff" />
+                        android:textColor="#ffffff"
+                        android:textSize="32sp" />
                 </LinearLayout>
 
                 <LinearLayout
