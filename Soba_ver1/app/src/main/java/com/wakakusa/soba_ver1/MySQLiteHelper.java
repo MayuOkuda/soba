@@ -74,26 +74,26 @@ class DatabaseWriter {
     String[] property;
     String Table_name;
 
-    final String[] tableName = {"user", "recode","time"};
-    final String[] user_property = {"name", "id"};
-    final String[] recode_property = {"id", "keiryo", "mizu", "kone", "zinosi", "marudasi","yotudasi"
+    final static String[] tableName = {"user", "recode","time"};
+    final static String[] user_property = {"name", "id"};
+    final static String[] recode_property = {"id", "keiryo", "mizu", "kone", "zinosi", "marudasi","yotudasi"
                                         ,"nikuzuke", "nosi", "tatami", "kiriyoi", "kiri", "katazuke", "sum"};
-    final String[] time_property = {"id", "keiryo", "mizu", "kone", "zinosi", "marudasi","yotudasi"
+    final static String[] time_property = {"id", "keiryo", "mizu", "kone", "zinosi", "marudasi","yotudasi"
                                         ,"nikuzuke", "nosi", "tatami", "kiriyoi", "kiri", "katazuke", "sum"};
 
     //コンストラクタ
-    public DatabaseWriter(Context context, String table) {
-        Table_name = table;
+    public DatabaseWriter(Context context, int i) {
+        Table_name = tableName[i];
         helper = new MySQLiteHelper(context);
         write = helper.getWritableDatabase();
-        if(Table_name.equals(tableName[0])) property = user_property;
-        else if(Table_name.equals(tableName[1])) property = recode_property;
-        else if(Table_name.equals(tableName[2])) property = time_property;
+        if(i==0) property = user_property;
+        else if(i==1) property = recode_property;
+        else if(i==2) property = time_property;
 
     }
 
     //データベースに入れる値を順番に入れる
-    public void user_dataWrite(String name, long id) throws JSONException {
+    public void user_dataWrite(String name, long id){
         ContentValues cvalue = new ContentValues();
         cvalue.put("name", name);
         cvalue.put("id", id);
@@ -101,10 +101,15 @@ class DatabaseWriter {
     }
 
     //データベースに入れる値を順番に入れる
-    public void userwrite(long[] recode, long id) throws JSONException {
+    public void recode_datawrite(long[] recode, long id){
         ContentValues cvalue = new ContentValues();
+        long sum = 0;
         cvalue.put("id", id);
-        for(int i = 0; i < property.length; i++ )  cvalue.put(property[i], recode[i]);
+        for(int i = 0; i < recode.length; i++ ){
+            cvalue.put(property[i], recode[i]);
+            sum += recode[i];
+        }
+        cvalue.put("sum", sum );
         write.insert(this.Table_name, null, cvalue);
     }
 

@@ -17,7 +17,7 @@
         </activity>
         <activity android:name=".MeasureActivity"/>
         <activity android:name=".TimerActivity" />
-        <activity android:name=".ReadDataActivity" />
+        <activity android:name=".RecodeCheckActivity" />
         <activity android:name=".result_comment" />
         <activity android:name=".time_result" />
         <activity android:name=".RecordScreenActivity" />

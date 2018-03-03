@@ -22,43 +22,57 @@ public class MeasureActivity extends AppCompatActivity {
 
         Button button1 = (Button) findViewById(R.id.enjoy);
         Button button2 = (Button) findViewById(R.id.challenge);
-        //button
-         ActivityIntent(button1, TimerActivity.class);
-
-
-        final AlertDialog.Builder eatbutton_builder = new AlertDialog.Builder(this);
-        eatbutton_builder.setTitle("お家に帰りたいけど,帰れない悲しい")
-                        .setMessage(" 大変眠たい");
-
-
-        DialogApp(button2, eatbutton_builder);
-
-
-        }
-
-
-    /*jumpの処理*/
-    void ActivityIntent(View view, final Class activityName){
-
-        /*お気楽モード*/
-        view.setOnClickListener(new View.OnClickListener() {
+        Button button3 = (Button) findViewById(R.id.expert);
+        Button button4 = (Button) findViewById(R.id.custom);
+        Button button5 = (Button) findViewById(R.id.modoru);
+        //お気楽モード
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), activityName);
+                Intent intent = new Intent(getApplication(), TimerActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
         });
-    }
 
-    /*dialogの処理*/
-    void DialogApp(View view, final AlertDialog.Builder dialog){
-
-        view.setOnClickListener(new View.OnClickListener() {
+        //検定モード
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.show();
+                Intent intent = new Intent(getApplication(), TimerActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
             }
         });
-    }
+
+        //名人モード
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), TimerActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+        });
+        //カスタムモード
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), TimerActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+        });
+
+        //戻る
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        }
+
 }

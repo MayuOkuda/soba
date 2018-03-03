@@ -67,7 +67,6 @@ public class TimerActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplication(), result_comment.class);
                         intent.putExtra("recode_time",recode);
                         startActivity(intent);
-
                     }
 
                 }else {
