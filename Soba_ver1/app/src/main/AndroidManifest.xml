@@ -23,7 +23,8 @@
         <activity android:name=".RecordScreenActivity" />
         <activity android:name=".RecordActivity" />
         <activity android:name=".ReadDataActivity" />
-        <activity android:name=".DisplayDataActivity"></activity>
+        <activity android:name=".DisplayDataActivity" />
+        <activity android:name=".ModeConfirmationActivity"></activity>
     </application>
 
 </manifest>
