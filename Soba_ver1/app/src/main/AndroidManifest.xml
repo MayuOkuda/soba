@@ -22,7 +22,8 @@
         <activity android:name=".time_result" />
         <activity android:name=".RecordScreenActivity" />
         <activity android:name=".RecordActivity" />
-        <activity android:name=".ReadDataActivity"></activity>
+        <activity android:name=".ReadDataActivity" />
+        <activity android:name=".DisplayDataActivity"></activity>
     </application>
 
 </manifest>

@@ -84,9 +84,10 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="検定"
+                        android:text="検定モード"
                         android:background="@drawable/button_mode_form2"
                         android:id="@+id/challenge"
+                        android:fontFamily="@font/koburi_min"
                         android:textColor="#ffffff"
                         android:textSize="32sp"/>
                 </LinearLayout>
@@ -123,7 +124,8 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="名人"
+                        android:text="名人モード"
+                        android:fontFamily="@font/koburi_min"
                         android:background="@drawable/button_mode_form3"
                         android:id="@+id/expert"
                         android:textColor="#ffffff"
@@ -163,6 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="カスタム"
+                        android:fontFamily="@font/koburi_min"
                         android:background="@drawable/button_mode_form4"
                         android:id="@+id/custom"
                         android:textColor="#ffffff"
@@ -217,6 +220,7 @@
                             android:layout_height="match_parent"
                             android:text="戻る"
                             android:background="@drawable/text_form1"
+                            android:fontFamily="@font/koburi_min"
                             android:id="@+id/modoru"
                             android:textColor="#ffffff"
                             android:textSize="32sp" />
