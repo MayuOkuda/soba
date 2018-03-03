@@ -32,15 +32,15 @@ public class RecordActivity extends AppCompatActivity {
                 //startActivity(intent);
                 if(write_flag) {
                     //日時をidとして設定
-                    Date data = new Date();  //
+                    Date data = new Date();
                     SimpleDateFormat sdf1 = new SimpleDateFormat("yyMMddHHmmss");
-                    long id = Long.parseLong(sdf1.format(data));  //(3)Dateオブジェクトを表示
+                    long id = Long.parseLong(sdf1.format(data));
                     DatabaseWriter userdata_w = new DatabaseWriter(RecordActivity.this, 0);
                     userdata_w.deleteDB();
                     userdata_w.user_dataWrite("山田", id);
                     DatabaseWriter recodedata_w = new DatabaseWriter(RecordActivity.this, 1);
                     recodedata_w.deleteDB();
-                    recodedata_w.recode_datawrite(recode, id);
+                    recodedata_w.recode_datawrite(recode, id, id);
                     Toast toast = Toast.makeText(RecordActivity.this, "データを追加したよ!", Toast.LENGTH_LONG);
                     toast.show();
                     write_flag = false;

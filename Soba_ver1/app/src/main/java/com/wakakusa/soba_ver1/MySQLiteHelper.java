@@ -32,6 +32,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     //登録データ情報
     final String  timeData = "CREATE TABLE recode(" +
             "id        INTEGER,"+
+            "data        INTEGER,"+
             "keiryo    INTEGER,"+
             "mizu      INTEGER,"+
             "kone      INTEGER,"+
@@ -76,7 +77,7 @@ class DatabaseWriter {
 
     final static String[] tableName = {"user", "recode","time"};
     final static String[] user_property = {"name", "id"};
-    final static String[] recode_property = {"id", "keiryo", "mizu", "kone", "zinosi", "marudasi","yotudasi"
+    final static String[] recode_property = {"id", "data", "keiryo", "mizu", "kone", "zinosi", "marudasi","yotudasi"
                                         ,"nikuzuke", "nosi", "tatami", "kiriyoi", "kiri", "katazuke", "sum"};
     final static String[] time_property = {"id", "keiryo", "mizu", "kone", "zinosi", "marudasi","yotudasi"
                                         ,"nikuzuke", "nosi", "tatami", "kiriyoi", "kiri", "katazuke", "sum"};
@@ -101,10 +102,11 @@ class DatabaseWriter {
     }
 
     //データベースに入れる値を順番に入れる
-    public void recode_datawrite(long[] recode, long id){
+    public void recode_datawrite(long[] recode, long id, long data){
         ContentValues cvalue = new ContentValues();
         long sum = 0;
         cvalue.put("id", id);
+        cvalue.put("data", data);
         for(int i = 0; i < recode.length; i++ ){
             cvalue.put(property[i], recode[i]);
             sum += recode[i];
