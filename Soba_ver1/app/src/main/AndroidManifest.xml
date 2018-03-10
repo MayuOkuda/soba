@@ -24,7 +24,11 @@
         <activity android:name=".RecordActivity" />
         <activity android:name=".ReadDataActivity" />
         <activity android:name=".DisplayDataActivity" />
-        <activity android:name=".ModeConfirmationActivity"></activity>
+        <activity android:name=".ModeConfirmationActivity" />
+        <activity android:name=".CustomActivity" />
+        <activity android:name=".CustomNewActivity" />
+        <activity android:name=".CustomMemolyActivity" />
+        <activity android:name=".CustomMemolyCheckActivity"></activity>
     </application>
 
 </manifest>
