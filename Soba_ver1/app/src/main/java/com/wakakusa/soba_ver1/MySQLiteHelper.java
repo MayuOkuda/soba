@@ -32,22 +32,73 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     //登録データ情報
     final String  timeData = "CREATE TABLE recode(" +
             "id        INTEGER,"+
-            "data        INTEGER,"+
-            "keiryo    INTEGER,"+
-            "mizu      INTEGER,"+
-            "kone      INTEGER,"+
-            "zinosi    INTEGER,"+
-            "marudasi  INTEGER,"+
-            "yotudasi  INTEGER,"+
-            "nikuzuke  INTEGER,"+
-            "nosi      INTEGER,"+
-            "tatami    INTEGER,"+
-            "kiriyoi   INTEGER,"+
-            "kiri      INTEGER,"+
-            "katazuke  INTEGER,"+
-            "sum       INTEGER )";
+            "time1      INTEGER,"+
+            "time2      INTEGER,"+
+            "time3      INTEGER,"+
+            "time4      INTEGER,"+
+            "time5      INTEGER,"+
+            "time6      INTEGER,"+
+            "time7      INTEGER,"+
+            "time8      INTEGER,"+
+            "time9      INTEGER,"+
+            "time10     INTEGER,"+
+            "time11     INTEGER,"+
+            "time12     INTEGER,"+
+            "time13     INTEGER,"+
+            "time14     INTEGER,"+
+            "time15     INTEGER,"+
+            "time16     INTEGER,"+
+            "time17     INTEGER,"+
+            "time18     INTEGER,"+
+            "time19     INTEGER,"+
+            "time20     INTEGER,"+
+            "time21     INTEGER )";
 
+    //登録データ情報
+    final String  processName = "CREATE TABLE process_name(" +
+            "naem1      TEXT,"+
+            "name2      TEXT,"+
+            "name3      TEXT,"+
+            "name4      TEXT,"+
+            "name5      TEXT,"+
+            "name6      TEXT,"+
+            "name7      TEXT,"+
+            "name8      TEXT,"+
+            "name9      TEXT,"+
+            "name10     TEXT,"+
+            "name11     TEXT,"+
+            "name12     TEXT,"+
+            "name13     TEXT,"+
+            "name14     TEXT,"+
+            "name15     TEXT,"+
+            "name16     TEXT,"+
+            "name17     TEXT,"+
+            "name18     TEXT,"+
+            "name19     TEXT,"+
+            "name20     TEXT )";
 
+    //登録データ情報
+    final String  processData = "CREATE TABLE process_data(" +
+            "time1      INTEGER,"+
+            "time2      INTEGER,"+
+            "time3      INTEGER,"+
+            "time4      INTEGER,"+
+            "time5      INTEGER,"+
+            "time6      INTEGER,"+
+            "time7      INTEGER,"+
+            "time8      INTEGER,"+
+            "time9      INTEGER,"+
+            "time10     INTEGER,"+
+            "time11     INTEGER,"+
+            "time12     INTEGER,"+
+            "time13     INTEGER,"+
+            "time14     INTEGER,"+
+            "time15     INTEGER,"+
+            "time16     INTEGER,"+
+            "time17     INTEGER,"+
+            "time18     INTEGER,"+
+            "time19     INTEGER,"+
+            "time20     INTEGER )";
 
     //コンストラクタ
     // (コンテクスト[入力は getApplicationContext()もしくはthis],データベースファイル名)

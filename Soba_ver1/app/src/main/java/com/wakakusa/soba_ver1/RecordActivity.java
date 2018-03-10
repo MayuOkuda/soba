@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -23,13 +24,13 @@ public class RecordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_record);
         final long[] recode = getIntent().getLongArrayExtra("recode_time");
 
+        final EditText nameText = (EditText) findViewById(R.id.editText);
+
    /*記録するボタン*/
         Button button1 = (Button) findViewById(R.id.button5);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getApplication(), RecordScreenActivity.class);
-                //startActivity(intent);
                 if(write_flag) {
                     //日時をidとして設定
                     Date data = new Date();
@@ -37,7 +38,7 @@ public class RecordActivity extends AppCompatActivity {
                     long id = Long.parseLong(sdf1.format(data));
                     DatabaseWriter userdata_w = new DatabaseWriter(RecordActivity.this, 0);
                     userdata_w.deleteDB();
-                    userdata_w.user_dataWrite("山田", id);
+                    userdata_w.user_dataWrite(nameText.getText().toString(), id);
                     DatabaseWriter recodedata_w = new DatabaseWriter(RecordActivity.this, 1);
                     recodedata_w.deleteDB();
                     recodedata_w.recode_datawrite(recode, id, id);
@@ -45,6 +46,9 @@ public class RecordActivity extends AppCompatActivity {
                     toast.show();
                     write_flag = false;
                 }
+                Intent intent = new Intent(getApplication(), MeasureActivity.class);
+                startActivity(intent);
+
             }
         });
 
@@ -53,8 +57,7 @@ public class RecordActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(RecordActivity.this, "Toastのテストだよ!", Toast.LENGTH_LONG);
-                toast.show();
+                finish();
 
             }
         });
