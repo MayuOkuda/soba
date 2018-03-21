@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 public class MeasureActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,42 +74,6 @@ public class MeasureActivity extends AppCompatActivity {
             }
         });
 
-        }
-
-    public static final int PREFERENCE_INIT = 0;
-    public static final int PREFERENCE_BOOTED = 1;
-
-    //データ保存
-    private void setState(int state) {
-        // SharedPreferences設定を保存
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        sp.edit().putInt("InitState", state).commit();
-
-    }
-
-    //データ読み出し
-    private int getState() {
-        // 読み込み
-        int state;
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        state = sp.getInt("InitState", PREFERENCE_INIT);
-
-        return state;
-    }
-
-    //初回起動時の処理
-    @Override
-    public void onResume(){
-        super.onResume();
-
-        // ダイアログの作成と表示
-        if(PREFERENCE_INIT == getState() ){
-            //初回起動時のみ表示する
-
-
-
-            setState(PREFERENCE_BOOTED);
-        }
     }
 
 }
